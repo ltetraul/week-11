@@ -33,3 +33,24 @@ def kmeans_diamonds(n, k):
     #run kmeans function
     centroids, labels = kmeans(X, k)
     return centroids, labels
+
+from time import time
+
+#define kmeans_timer function
+def kmeans_timer(n, k, n_iter=5):
+    """
+    Runs kmeans_diamonds exactly n_iter times and returns
+    the average runtime in seconds.
+    """
+    runtimes = []
+
+#run kmeans_diamonds n_iter times
+    for _ in range(n_iter):
+        start = time()
+        _ = kmeans_diamonds(n, k)
+        elapsed = time() - start
+        runtimes.append(elapsed)
+
+#compute average runtime
+    avg_time = sum(runtimes) / len(runtimes)
+    return avg_time
